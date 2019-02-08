@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { articleShape } from '../shapes';
+import articleShape from '../shapes/articleShape';
 import Modal from '../modal';
+import formatDate from '../../helpers/formatDate';
 
 function ArticleModal(props) {
     const { article, close } = props;
@@ -23,7 +24,7 @@ function ArticleModal(props) {
                     </a>
                 </h6>
 
-                <time dateTime={publishedAt}>{publishedAt}</time>
+                <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
 
                 <h6>{author}</h6>
 

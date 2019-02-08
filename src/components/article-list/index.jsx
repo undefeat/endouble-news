@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { articleShape } from '../shapes';
+import articleShape from '../shapes/articleShape';
 import ArticleCard from '../article-card';
 import Pager from '../pager';
 

@@ -20,7 +20,7 @@ class Modal extends React.Component {
         document.body.removeEventListener('click', this.handleOutsideClick);
     }
 
-    handleOutsideClick = event => {
+    handleOutsideClick = (event) => {
         if (event.target !== this.el && !this.el.contains(event.target)) {
             const { close } = this.props;
             close();

@@ -18,6 +18,7 @@
         "expect": true,
         "beforeEach": true,
         "afterEach": true,
-        "Headers": true
+        "Headers": true,
+        "jest": true
     }
 }

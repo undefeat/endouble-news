@@ -1,6 +1,7 @@
 import React from 'react';
-import { articleShape } from '../shapes';
+import articleShape from '../shapes/articleShape';
 import ArticleModal from '../article-modal';
+import formatDate from '../../helpers/formatDate';
 
 class ArticleCard extends React.Component {
     state = {
@@ -49,7 +50,7 @@ class ArticleCard extends React.Component {
                         </a>
                     </h6>
 
-                    <time dateTime={publishedAt}>{publishedAt}</time>
+                    <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
                 </article>
 
                 {modalIsOpen && <ArticleModal article={article} close={this.handleCloseModal} />}
