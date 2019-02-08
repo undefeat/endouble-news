@@ -27,6 +27,7 @@
     ],
     "devDependencies": {
         "@endouble.com/eslint-config-endouble": "^2.0.0",
-        "prettier": "^1.16.4"
+        "prettier": "^1.16.4",
+        "prop-types": "^15.6.2"
     }
 }
