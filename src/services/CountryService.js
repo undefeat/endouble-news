@@ -1,5 +1,3 @@
-const countriesAll = require('./__tests__/responses/countries-all.json');
-
 class CountryService {
     apiUrl = 'https://restcountries.eu/rest/v2/all';
 
@@ -7,9 +5,8 @@ class CountryService {
 
     async getCountries() {
         try {
-            // const response = await fetch(this.apiUrl);
-            // const body = await response.json();
-            const body = countriesAll;
+            const response = await fetch(this.apiUrl);
+            const body = await response.json();
             const countries = body.map(country => ({
                 code: country.alpha2Code.toLowerCase(),
                 name: country.name,

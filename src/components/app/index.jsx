@@ -15,25 +15,24 @@ class App extends React.Component {
             country: 'us',
             category: 'general',
             q: '',
-            pageSize: 20,
+            pageSize: 12,
             page: 1,
         },
         sortOptions: ['date', 'source'],
         sortBy: 'date',
         loading: false,
+        fetchingArticles: false,
         totalResults: 0,
     };
 
     async componentDidMount() {
         try {
-            this.setState({ loading: true });
-
-            const countries = await CountryService.getCountries();
-
             const { filter } = this.state;
-            const { articles, totalResults } = await HeadlineService.getHeadlines(filter);
-
-            this.setState({ articles, countries, loading: false, totalResults });
+            this.setState({ loading: true });
+            const countries = await CountryService.getCountries();
+            this.setState({ countries });
+            this.fetchArticles(filter);
+            this.setState({ loading: false });
         } catch (e) {
             this.setState(() => {
                 throw e;
@@ -41,18 +40,44 @@ class App extends React.Component {
         }
     }
 
-    updateFilter = filterPartial =>
-        this.setState(prevState => ({
-            filter: {
-                ...prevState.filter,
-                ...filterPartial,
-            },
-        }));
+    async componentDidUpdate(prevProps, prevState) {
+        const { filter } = this.state;
+        if (filter !== prevState.filter) {
+            this.fetchArticles(filter);
+        }
+    }
+
+    updateFilter = filterPartial => this.setState(prevState => ({
+        filter: {
+            ...prevState.filter,
+            ...filterPartial,
+        },
+    }));
 
     updateSortBy = sortBy => this.setState({ sortBy });
 
+    async fetchArticles(filter) {
+        this.setState({ fetchingArticles: true });
+        const { articles, totalResults } = await HeadlineService.getHeadlines(filter);
+        this.setState({ articles, totalResults, fetchingArticles: false });
+    }
+
     render() {
-        const { articles, categories, countries, filter, sortBy, sortOptions, totalResults } = this.state;
+        const {
+            articles,
+            categories,
+            countries,
+            filter,
+            sortBy,
+            sortOptions,
+            totalResults,
+            loading,
+            fetchingArticles,
+        } = this.state;
+
+        if (loading) {
+            return 'Loading...';
+        }
 
         return (
             <>
@@ -63,14 +88,15 @@ class App extends React.Component {
                         selectedCountry={filter.country}
                         categories={categories}
                         countries={countries}
-                        onCategoryChanged={category => this.updateFilter({ category })}
-                        onCountryChanged={country => this.updateFilter({ country })}
-                        onSearchPhraseChanged={q => this.updateFilter({ q })}
+                        onCategoryChanged={category => this.updateFilter({ category, page: 1 })}
+                        onCountryChanged={country => this.updateFilter({ country, page: 1 })}
+                        onSearchPhraseChanged={q => this.updateFilter({ q, page: 1 })}
                     />
                     <SortPanel sortBy={sortBy} sortOptions={sortOptions} onSortByChanged={this.updateSortBy} />
                 </header>
 
                 <ArticleList
+                    fetching={fetchingArticles}
                     articles={articles}
                     totalResults={totalResults}
                     pageSize={filter.pageSize}

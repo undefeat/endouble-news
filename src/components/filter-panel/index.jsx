@@ -1,57 +1,87 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
 
-function FilterPanel(props) {
-    const {
-        q,
-        categories,
-        countries,
-        selectedCategory,
-        selectedCountry,
-        onCategoryChanged,
-        onCountryChanged,
-        onSearchPhraseChanged,
-    } = props;
+class FilterPanel extends React.Component {
+    searchInputRef = React.createRef();
 
-    const categoryOptions = categories.map(category => (
-        <option key={category} value={category}>
-            {category}
-        </option>
-    ));
-    const countryOptions = countries.map(country => (
-        <option key={country.code} value={country.code}>
-            {country.nativeName}
-        </option>
-    ));
-    const handleCategoryChange = event => onCategoryChanged(event.target.value);
-    const handleCountryChange = event => onCountryChanged(event.target.value);
-    const handleSearchPhraseChange = event => onSearchPhraseChanged(event.target.value);
+    constructor(props) {
+        super(props);
+        this.state = {
+            q: props.q,
+        };
+        this.callOnSearchPhraseChanged = debounce(this.callOnSearchPhraseChanged, 500);
+    }
 
-    return (
-        <div>
-            <input
-                type="search"
-                aria-label="Keywords or a phrase to search for"
-                placeholder='Keywords or a phrase to search for, e.g. "elections"'
-                value={q}
-                onChange={handleSearchPhraseChange}
-            />
+    componentDidMount() {
+        if (this.searchInputRef.current) {
+            this.searchInputRef.current.focus();
+        }
+    }
 
-            <label htmlFor="country-select">
-                Country:
-                <select id="country-select" value={selectedCountry} onChange={handleCountryChange}>
-                    {countryOptions}
-                </select>
-            </label>
+    handleCategoryChange = (event) => {
+        const { onCategoryChanged } = this.props;
+        onCategoryChanged(event.target.value);
+    };
 
-            <label htmlFor="category-select">
-                Category:
-                <select id="category-select" value={selectedCategory} onChange={handleCategoryChange}>
-                    {categoryOptions}
-                </select>
-            </label>
-        </div>
-    );
+    handleSearchPhraseChange = (event) => {
+        const q = event.target.value;
+        this.setState({ q });
+        this.callOnSearchPhraseChanged(q);
+    };
+
+    callOnSearchPhraseChanged = (q) => {
+        const { onSearchPhraseChanged } = this.props;
+        onSearchPhraseChanged(q);
+    };
+
+    handleCountryChange = (event) => {
+        const { onCountryChanged } = this.props;
+        onCountryChanged(event.target.value);
+    };
+
+    render() {
+        const { categories, countries, selectedCategory, selectedCountry } = this.props;
+        const { q } = this.state;
+
+        const categoryOptions = categories.map(category => (
+            <option key={category} value={category}>
+                {category}
+            </option>
+        ));
+        const countryOptions = countries.map(country => (
+            <option key={country.code} value={country.code}>
+                {country.nativeName}
+            </option>
+        ));
+
+        return (
+            <div>
+                <input
+                    ref={this.searchInputRef}
+                    type="search"
+                    aria-label="Keywords or a phrase to search for"
+                    placeholder='Keywords or a phrase to search for, e.g. "elections"'
+                    value={q}
+                    onChange={this.handleSearchPhraseChange}
+                />
+
+                <label htmlFor="country-select">
+                    Country:
+                    <select id="country-select" value={selectedCountry} onChange={this.handleCountryChange}>
+                        {countryOptions}
+                    </select>
+                </label>
+
+                <label htmlFor="category-select">
+                    Category:
+                    <select id="category-select" value={selectedCategory} onChange={this.handleCategoryChange}>
+                        {categoryOptions}
+                    </select>
+                </label>
+            </div>
+        );
+    }
 }
 
 FilterPanel.propTypes = {

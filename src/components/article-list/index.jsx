@@ -5,7 +5,11 @@ import ArticleCard from '../article-card';
 import Pager from '../pager';
 
 function ArticleList(props) {
-    const { articles, totalResults, pageSize, page, onPageChanged } = props;
+    const { fetching, articles, totalResults, pageSize, page, onPageChanged } = props;
+
+    if (fetching) {
+        return 'Fetching...';
+    }
 
     const cards = articles.map(article => <ArticleCard key={`${article.title}__${article.url}`} article={article} />);
 
@@ -19,6 +23,7 @@ function ArticleList(props) {
 }
 
 ArticleList.propTypes = {
+    fetching: PropTypes.bool.isRequired,
     articles: PropTypes.arrayOf(articleShape).isRequired,
     totalResults: PropTypes.number.isRequired,
     pageSize: PropTypes.number.isRequired,
