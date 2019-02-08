@@ -1,0 +1,47 @@
+.filter-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.filter-panel__input,
+.filter-panel__select {
+    padding: 8px 8px 8px 24px;
+    line-height: 1.1875em;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.33);
+    border: none;
+    border-radius: 4px;
+}
+
+.filter-panel__input,
+.filter-panel__label {
+    width: calc(100% - 12px);
+    margin: 8px 12px;
+}
+
+.filter-panel__label {
+    display: flex;
+    align-items: center;
+}
+
+.filter-panel__label > span {
+    margin-right: 0.5em;
+}
+
+.filter-panel__select {
+    width: 100%;
+    text-transform: capitalize;
+}
+
+@media (min-width: 768px) {
+    .filter-panel {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .filter-panel__input,
+    .filter-panel__label {
+        width: 33%;
+    }
+}

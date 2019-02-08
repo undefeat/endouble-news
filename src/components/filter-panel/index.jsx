@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
+import './index.css';
 
 class FilterPanel extends React.Component {
     searchInputRef = React.createRef();
@@ -56,26 +57,37 @@ class FilterPanel extends React.Component {
         ));
 
         return (
-            <div>
+            <div className="filter-panel">
                 <input
                     ref={this.searchInputRef}
+                    className="filter-panel__input"
                     type="search"
                     aria-label="Keywords or a phrase to search for"
-                    placeholder='Keywords or a phrase to search for, e.g. "elections"'
+                    placeholder="Search..."
                     value={q}
                     onChange={this.handleSearchPhraseChange}
                 />
 
-                <label htmlFor="country-select">
-                    Country:
-                    <select id="country-select" value={selectedCountry} onChange={this.handleCountryChange}>
+                <label htmlFor="country-select" className="filter-panel__label">
+                    <span>Country:</span>
+                    <select
+                        className="filter-panel__select"
+                        id="country-select"
+                        value={selectedCountry}
+                        onChange={this.handleCountryChange}
+                    >
                         {countryOptions}
                     </select>
                 </label>
 
-                <label htmlFor="category-select">
-                    Category:
-                    <select id="category-select" value={selectedCategory} onChange={this.handleCategoryChange}>
+                <label htmlFor="category-select" className="filter-panel__label">
+                    <span>Category:</span>
+                    <select
+                        className="filter-panel__select"
+                        id="category-select"
+                        value={selectedCategory}
+                        onChange={this.handleCategoryChange}
+                    >
                         {categoryOptions}
                     </select>
                 </label>

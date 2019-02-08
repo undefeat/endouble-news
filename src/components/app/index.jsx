@@ -103,7 +103,7 @@ class App extends React.Component {
 
         return (
             <div className="app">
-                <header>
+                <header className="app__header">
                     <FilterPanel
                         q={filter.q}
                         selectedCategory={filter.category}

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './index.css';
 
 function SortPanel(props) {
     const { sortBy, sortOptions, onSortByChanged } = props;
@@ -7,8 +8,8 @@ function SortPanel(props) {
     const handleClick = () => onSortByChanged(nextSortOption);
 
     return (
-        <div>
-            <button type="button" onClick={handleClick}>
+        <div className="sort-panel">
+            <button className="sort-panel__btn" type="button" onClick={handleClick}>
                 <span>Sort by </span>
                 <span>{nextSortOption}</span>
             </button>
