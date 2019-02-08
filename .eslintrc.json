@@ -11,9 +11,12 @@
         "window": true,
         "document": true,
         "localStorage": true,
-        "FormData": true,
-        "FileReader": true,
-        "Blob": true,
-        "navigator": true
+        "navigator": true,
+        "fetch": true,
+        "describe": true,
+        "it": true,
+        "expect": true,
+        "beforeEach": true,
+        "afterEach": true
     }
 }
