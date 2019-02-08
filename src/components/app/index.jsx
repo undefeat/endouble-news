@@ -79,6 +79,21 @@ class App extends React.Component {
             return 'Loading...';
         }
 
+        let articlesSorted;
+        if (sortBy === 'source') {
+            articlesSorted = [...articles].sort((a, b) => {
+                if (a.source < b.source) {
+                    return -1;
+                }
+                if (a.source > b.source) {
+                    return 1;
+                }
+                return 0;
+            });
+        } else {
+            articlesSorted = articles;
+        }
+
         return (
             <>
                 <header>
@@ -97,7 +112,7 @@ class App extends React.Component {
 
                 <ArticleList
                     fetching={fetchingArticles}
-                    articles={articles}
+                    articles={articlesSorted}
                     totalResults={totalResults}
                     pageSize={filter.pageSize}
                     page={filter.page}
