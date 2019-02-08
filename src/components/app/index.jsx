@@ -1,6 +1,7 @@
 import React from 'react';
 import CountryService from '../../services/CountryService';
 import HeadlineService from '../../services/HeadlineService';
+import LocationService from '../../services/LocationService';
 import FilterPanel from '../filter-panel';
 import SortPanel from '../sort-panel';
 import ArticleList from '../article-list';
@@ -35,6 +36,9 @@ class App extends React.Component {
             }
 
             const { filter } = this.state;
+            LocationService.updateQueryParams(filter);
+            window.addEventListener('popstate', this.handlePopstate);
+
             this.setState({ loading: true });
             const countries = await CountryService.getCountries();
             this.setState({ countries });
@@ -54,12 +58,32 @@ class App extends React.Component {
         }
     }
 
-    updateFilter = filterPartial => this.setState(prevState => ({
-        filter: {
-            ...prevState.filter,
-            ...filterPartial,
-        },
-    }));
+    componentWillUnmount() {
+        window.removeEventListener('popstate', this.handlePopstate);
+    }
+
+    handlePopstate = (event) => {
+        if (event.state) {
+            this.updateFilter(event.state, false);
+        }
+    };
+
+    updateFilter = (filterPartial, updateQueryParams = true) => {
+        this.setState((prevState) => {
+            const newFilter = {
+                ...prevState.filter,
+                ...filterPartial,
+            };
+
+            if (updateQueryParams) {
+                LocationService.updateQueryParams(newFilter);
+            }
+
+            return {
+                filter: newFilter,
+            };
+        });
+    };
 
     updateSortBy = sortBy => this.setState({ sortBy });
 
