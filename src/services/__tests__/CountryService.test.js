@@ -6,7 +6,7 @@ describe('getCountries', () => {
     beforeEach(() => fetch.resetMocks());
 
     it('should correctly map the response body', async () => {
-        expect.assertions(countriesAll.length * 4);
+        expect.assertions(countriesAll.length * 3);
         fetch.mockResponseOnce(JSON.stringify(countriesAll));
 
         const countries = await CountryService.getCountries();
@@ -14,8 +14,7 @@ describe('getCountries', () => {
         countries.forEach((country) => {
             expect(typeof country.name).toBe('string');
             expect(typeof country.nativeName).toBe('string');
-            expect(typeof country.code).toBe('string');
-            expect(country.code.length).toBe(2);
+            expect(country.code).toMatch(/^[a-z]{2}$/);
         });
     });
 

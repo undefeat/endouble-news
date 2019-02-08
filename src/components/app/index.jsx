@@ -1,14 +1,19 @@
 import React from 'react';
 import CountryService from '../../services/CountryService';
 import HeadlineService from '../../services/HeadlineService';
+import FilterPanel from '../filter-panel';
+import SortPanel from '../sort-panel';
+import ArticleList from '../article-list';
+import Footer from '../footer';
 
 class App extends React.Component {
     state = {
         articles: [],
+        categories: ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'],
         countries: [],
         filter: {
             country: 'us',
-            category: '',
+            category: 'general',
             q: '',
             pageSize: 12,
             page: 1,
@@ -34,10 +39,37 @@ class App extends React.Component {
         }
     }
 
+    updateFilter = (filterPartial) => {
+        this.setState(prevState => ({
+            filter: {
+                ...prevState.filter,
+                ...filterPartial,
+            },
+        }));
+    };
+
     render() {
-        const { articles, countries, loading, totalResults } = this.state;
-        console.log(articles, countries, loading, totalResults);
-        return <h1>Hello World</h1>;
+        const { categories, countries, filter } = this.state;
+
+        return (
+            <>
+                <header>
+                    <FilterPanel
+                        q={filter.q}
+                        selectedCategory={filter.category}
+                        selectedCountry={filter.country}
+                        categories={categories}
+                        countries={countries}
+                        onCategoryChanged={category => this.updateFilter({ category })}
+                        onCountryChanged={country => this.updateFilter({ country })}
+                        onSearchPhraseChanged={q => this.updateFilter({ q })}
+                    />
+                    <SortPanel />
+                </header>
+                <ArticleList />
+                <Footer />
+            </>
+        );
     }
 }
 

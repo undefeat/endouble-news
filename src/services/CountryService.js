@@ -8,9 +8,9 @@ class CountryService {
             const response = await fetch(this.apiUrl);
             const body = await response.json();
             const countries = body.map(country => ({
+                code: country.alpha2Code.toLowerCase(),
                 name: country.name,
                 nativeName: country.nativeName,
-                code: country.alpha2Code,
             }));
             return countries;
         } catch (e) {
