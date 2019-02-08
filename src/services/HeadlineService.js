@@ -1,3 +1,5 @@
+import ErrorWrapped from '../classes/ErrorWrapped';
+
 class HeadlineService {
     apiUrl = 'https://newsapi.org/v2/top-headlines';
 
@@ -35,7 +37,7 @@ class HeadlineService {
 
             throw body;
         } catch (e) {
-            throw Error(this.errorMessage);
+            throw new ErrorWrapped(this.errorMessage, e);
         }
     }
 

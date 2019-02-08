@@ -1,3 +1,5 @@
+import ErrorWrapped from '../classes/ErrorWrapped';
+
 class CountryService {
     apiUrl = 'https://restcountries.eu/rest/v2/all';
 
@@ -14,7 +16,7 @@ class CountryService {
             }));
             return countries;
         } catch (e) {
-            throw Error(this.errorMessage);
+            throw new ErrorWrapped(this.errorMessage, e);
         }
     }
 }
