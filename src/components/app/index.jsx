@@ -18,6 +18,8 @@ class App extends React.Component {
             pageSize: 20,
             page: 1,
         },
+        sortOptions: ['date', 'source'],
+        sortBy: 'date',
         loading: false,
         totalResults: 0,
     };
@@ -39,17 +41,18 @@ class App extends React.Component {
         }
     }
 
-    updateFilter = filterPartial => {
+    updateFilter = filterPartial =>
         this.setState(prevState => ({
             filter: {
                 ...prevState.filter,
                 ...filterPartial,
             },
         }));
-    };
+
+    updateSortBy = sortBy => this.setState({ sortBy });
 
     render() {
-        const { articles, categories, countries, filter, totalResults } = this.state;
+        const { articles, categories, countries, filter, sortBy, sortOptions, totalResults } = this.state;
 
         return (
             <>
@@ -64,7 +67,7 @@ class App extends React.Component {
                         onCountryChanged={country => this.updateFilter({ country })}
                         onSearchPhraseChanged={q => this.updateFilter({ q })}
                     />
-                    <SortPanel />
+                    <SortPanel sortBy={sortBy} sortOptions={sortOptions} onSortByChanged={this.updateSortBy} />
                 </header>
 
                 <ArticleList
