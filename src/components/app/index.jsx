@@ -49,7 +49,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { categories, countries, filter } = this.state;
+        const { articles, categories, countries, filter, totalResults } = this.state;
 
         return (
             <>
@@ -66,7 +66,8 @@ class App extends React.Component {
                     />
                     <SortPanel />
                 </header>
-                <ArticleList />
+
+                <ArticleList articles={articles} totalResults={totalResults} />
                 <Footer />
             </>
         );
