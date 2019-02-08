@@ -15,7 +15,7 @@ class App extends React.Component {
             country: 'us',
             category: 'general',
             q: '',
-            pageSize: 12,
+            pageSize: 20,
             page: 1,
         },
         loading: false,
@@ -39,7 +39,7 @@ class App extends React.Component {
         }
     }
 
-    updateFilter = (filterPartial) => {
+    updateFilter = filterPartial => {
         this.setState(prevState => ({
             filter: {
                 ...prevState.filter,
@@ -67,7 +67,13 @@ class App extends React.Component {
                     <SortPanel />
                 </header>
 
-                <ArticleList articles={articles} totalResults={totalResults} />
+                <ArticleList
+                    articles={articles}
+                    totalResults={totalResults}
+                    pageSize={filter.pageSize}
+                    page={filter.page}
+                    onPageChanged={page => this.updateFilter({ page })}
+                />
                 <Footer />
             </>
         );
