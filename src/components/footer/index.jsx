@@ -1,10 +1,11 @@
 import React from 'react';
+import './index.css';
 
 function Footer() {
     return (
-        <footer>
+        <footer className="footer">
             <span>Powered by </span>
-            <a href="https://newsapi.org" rel="noopener noreferrer" target="_blank">
+            <a className="footer__link" href="https://newsapi.org" rel="noopener noreferrer" target="_blank">
                 NewsAPI.org
             </a>
         </footer>

@@ -1,0 +1,19 @@
+.footer {
+    text-align: center;
+    margin: 16px 0;
+    color: gray;
+    font-size: 14px;
+}
+
+.footer__link,
+.footer__link:active,
+.footer__link:visited {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+
+.footer__link:hover {
+    color: darkgray;
+    text-decoration: underline;
+}
