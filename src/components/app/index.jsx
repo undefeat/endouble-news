@@ -7,6 +7,7 @@ import SortPanel from '../sort-panel';
 import ArticleList from '../article-list';
 import Footer from '../footer';
 import Loader from '../loader';
+import BackToTop from '../back-to-top';
 import './index.css';
 
 class App extends React.Component {
@@ -62,14 +63,14 @@ class App extends React.Component {
         window.removeEventListener('popstate', this.handlePopstate);
     }
 
-    handlePopstate = (event) => {
+    handlePopstate = event => {
         if (event.state) {
             this.updateFilter(event.state, false);
         }
     };
 
     updateFilter = (filterPartial, updateQueryParams = true) => {
-        this.setState((prevState) => {
+        this.setState(prevState => {
             const newFilter = {
                 ...prevState.filter,
                 ...filterPartial,
@@ -126,32 +127,36 @@ class App extends React.Component {
         }
 
         return (
-            <div className="app">
-                <header className="app__header">
-                    <FilterPanel
-                        q={filter.q}
-                        selectedCategory={filter.category}
-                        selectedCountry={filter.country}
-                        categories={categories}
-                        countries={countries}
-                        onCategoryChanged={category => this.updateFilter({ category, page: 1 })}
-                        onCountryChanged={country => this.updateFilter({ country, page: 1 })}
-                        onSearchPhraseChanged={q => this.updateFilter({ q, page: 1 })}
+            <>
+                <div className="app">
+                    <header className="app__header">
+                        <FilterPanel
+                            q={filter.q}
+                            selectedCategory={filter.category}
+                            selectedCountry={filter.country}
+                            categories={categories}
+                            countries={countries}
+                            onCategoryChanged={category => this.updateFilter({ category, page: 1 })}
+                            onCountryChanged={country => this.updateFilter({ country, page: 1 })}
+                            onSearchPhraseChanged={q => this.updateFilter({ q, page: 1 })}
+                        />
+                        <SortPanel sortBy={sortBy} sortOptions={sortOptions} onSortByChanged={this.updateSortBy} />
+                    </header>
+
+                    <ArticleList
+                        fetching={fetchingArticles}
+                        articles={articlesSorted}
+                        totalResults={totalResults}
+                        pageSize={filter.pageSize}
+                        page={filter.page}
+                        onPageChanged={page => this.updateFilter({ page })}
                     />
-                    <SortPanel sortBy={sortBy} sortOptions={sortOptions} onSortByChanged={this.updateSortBy} />
-                </header>
 
-                <ArticleList
-                    fetching={fetchingArticles}
-                    articles={articlesSorted}
-                    totalResults={totalResults}
-                    pageSize={filter.pageSize}
-                    page={filter.page}
-                    onPageChanged={page => this.updateFilter({ page })}
-                />
-
-                <Footer />
-            </div>
+                    <Footer />
+                </div>
+                
+                <BackToTop />
+            </>
         );
     }
 }
