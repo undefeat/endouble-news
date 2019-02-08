@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import articleShape from '../shapes/articleShape';
 import Modal from '../modal';
-import formatDate from '../../helpers/formatDate';
+import ArticleMeta from '../article-meta';
+import './index.css';
 
 function ArticleModal(props) {
     const { article, close } = props;
@@ -10,25 +11,18 @@ function ArticleModal(props) {
 
     return (
         <Modal close={close}>
-            <article>
-                <figure>
-                    <img src={urlToImage} alt="" style={{ maxWidth: '100%' }} />
+            <article className="article-modal">
+                <figure className="article-modal__picture">
+                    <img className="article-modal__picture__img" src={urlToImage} alt="" />
                 </figure>
 
-                <h2>{title}</h2>
+                <h2 className="article-modal__title">{title}</h2>
 
-                <h6>
-                    <span>Source: </span>
-                    <a href={url} rel="noopener noreferrer" aria-label="Source URL" target="_blank">
-                        {source}
-                    </a>
-                </h6>
+                <ArticleMeta source={source} url={url} publishedAt={publishedAt} />
 
-                <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
+                <p className="article-modal__content">{content}</p>
 
-                <h6>{author}</h6>
-
-                <p>{content}</p>
+                <h6 className="article-modal__author">{author}</h6>
             </article>
         </Modal>
     );

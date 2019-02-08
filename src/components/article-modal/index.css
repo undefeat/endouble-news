@@ -1,0 +1,39 @@
+.article-modal__picture {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-height: 35vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+.article-modal__picture__img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+.article-modal__title {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+    padding: 16px;
+    margin: 0;
+}
+
+.article-modal__content {
+    font-size: 16px;
+    margin: 0;
+    padding: 16px;
+    text-align: justify;
+    line-height: 1.2;
+    max-height: 30vh;
+    overflow: auto;
+}
+
+.article-modal__author {
+    margin: 0;
+    padding: 16px;
+    font-size: 12px;
+    font-weight: bold;
+    color: gray;
+}

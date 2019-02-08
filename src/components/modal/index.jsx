@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import './index.css';
 
 class Modal extends React.Component {
     el = document.createElement('div');
 
     closeBtnRef = React.createRef();
+
+    modalRef = React.createRef();
 
     componentDidMount() {
         document.body.appendChild(this.el);
@@ -21,7 +24,11 @@ class Modal extends React.Component {
     }
 
     handleOutsideClick = (event) => {
-        if (event.target !== this.el && !this.el.contains(event.target)) {
+        if (
+            this.modalRef.current
+            && event.target !== this.modalRef.current
+            && !this.modalRef.current.contains(event.target)
+        ) {
             const { close } = this.props;
             close();
         }
@@ -31,22 +38,21 @@ class Modal extends React.Component {
         const { children, close } = this.props;
 
         return ReactDOM.createPortal(
-            <aside
-                style={{
-                    position: 'fixed',
-                    top: 0,
-                    maxWidth: '80vw',
-                    maxHeight: '80vh',
-                    background: '#FFF',
-                    border: '1px solid black',
-                    overflow: 'auto',
-                }}
-            >
-                <button ref={this.closeBtnRef} type="button" aria-label="Close" onClick={close}>
-                    X
-                </button>
-                {children}
-            </aside>,
+            <div className="modal__wrapper">
+                <aside ref={this.modalRef} className="modal">
+                    <button
+                        ref={this.closeBtnRef}
+                        className="modal__close-btn"
+                        type="button"
+                        aria-label="Close"
+                        title="Close"
+                        onClick={close}
+                    >
+                        <i className="fas fa-times" />
+                    </button>
+                    {children}
+                </aside>
+            </div>,
             this.el,
         );
     }

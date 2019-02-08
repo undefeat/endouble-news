@@ -1,7 +1,7 @@
 import React from 'react';
 import articleShape from '../shapes/articleShape';
 import ArticleModal from '../article-modal';
-import formatDate from '../../helpers/formatDate';
+import ArticleMeta from '../article-meta';
 import './index.css';
 
 class ArticleCard extends React.Component {
@@ -44,21 +44,7 @@ class ArticleCard extends React.Component {
                         <h2 className="article-card__title">{title}</h2>
                     </button>
 
-                    <div className="article-card__meta">
-                        <a
-                            className="article-card__meta__source-link"
-                            href={url}
-                            rel="noopener noreferrer"
-                            aria-label="Source URL"
-                            target="_blank"
-                        >
-                            {source}
-                        </a>
-                        <span className="article-card__meta__delimiter">|</span>
-                        <time className="article-card__meta__date" dateTime={publishedAt} title={new Date(publishedAt).toLocaleString()}>
-                            {formatDate(publishedAt)}
-                        </time>
-                    </div>
+                    <ArticleMeta source={source} url={url} publishedAt={publishedAt} />
 
                     <p className="article-card__description">{description}</p>
                 </article>

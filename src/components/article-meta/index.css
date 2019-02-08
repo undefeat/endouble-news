@@ -1,0 +1,31 @@
+.article-meta {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0 16px 8px 16px;
+    color: gray;
+}
+
+.article-meta__delimiter {
+    margin: 0 0.5em;
+}
+
+.article-meta__source-link,
+.article-meta__date {
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.article-meta__source-link,
+.article-meta__source-link:active,
+.article-meta__source-link:visited {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+
+.article-meta__source-link:hover {
+    color: darkgray;
+    text-decoration: underline;
+}
