@@ -1,40 +1,50 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { articleShape } from '../shapes';
+import ArticleModal from '../article-modal';
 
-function ArticleCard(props) {
-    const { article } = props;
-    const { source, author, title, description, url, urlToImage, publishedAt, content } = article;
+class ArticleCard extends React.Component {
+    state = {
+        modalIsOpen: false,
+    };
 
-    return (
-        <li>
-            <article>
-                <figure>
-                    <img src={urlToImage} alt="thumbnail" style={{ maxWidth: 100 }} />
-                </figure>
-                <h2>{title}</h2>
-                <p>{description}</p>
-                <p>
-                    <span>Source: </span>
-                    <a href={url} rel="noopener noreferrer" target="_blank">
-                        {source}
-                    </a>
-                </p>
-                <p>{publishedAt}</p>
-            </article>
-        </li>
-    );
+    handleClick = () => {
+        this.setState({ modalIsOpen: true });
+    };
+
+    handleModalClosed = () => {
+        this.setState({ modalIsOpen: false });
+    };
+
+    render() {
+        const { article } = this.props;
+        const { modalIsOpen } = this.state;
+        const { source, title, description, url, urlToImage, publishedAt } = article;
+
+        return (
+            <li>
+                <article>
+                    <button type="button" onClick={this.handleClick}>
+                        <figure>
+                            <img src={urlToImage} alt="thumbnail" style={{ maxWidth: 100 }} />
+                        </figure>
+                        <h2>{title}</h2>
+                        <p>{description}</p>
+                    </button>
+
+                    <p>
+                        <span>Source: </span>
+                        <a href={url} rel="noopener noreferrer" target="_blank">
+                            {source}
+                        </a>
+                    </p>
+                    <p>{publishedAt}</p>
+                </article>
+
+                {modalIsOpen && <ArticleModal article={article} onModalClosed={this.handleModalClosed} />}
+            </li>
+        );
+    }
 }
-
-export const articleShape = PropTypes.shape({
-    source: PropTypes.string,
-    author: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
-    title: PropTypes.string,
-    description: PropTypes.string,
-    url: PropTypes.string,
-    urlToImage: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
-    publishedAt: PropTypes.string,
-    content: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
-});
 
 ArticleCard.propTypes = {
     article: articleShape.isRequired,

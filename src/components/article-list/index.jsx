@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ArticleCard, { articleShape } from '../article-card';
+import { articleShape } from '../shapes';
+import ArticleCard from '../article-card';
 
 function ArticleList(props) {
     const { articles, totalResults } = props;
