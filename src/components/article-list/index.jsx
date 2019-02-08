@@ -11,7 +11,7 @@ function ArticleList(props) {
 
     if (fetching) {
         return (
-            <main>
+            <main className="article-list__wrapper fetching">
                 <Loader />
             </main>
         );
@@ -20,7 +20,7 @@ function ArticleList(props) {
     const cards = articles.map(article => <ArticleCard key={`${article.title}__${article.url}`} article={article} />);
 
     return (
-        <main>
+        <main className="article-list__wrapper">
             {cards.length > 0 ? (
                 <>
                     <ul className="article_list">{cards}</ul>

@@ -1,11 +1,17 @@
 .footer {
     width: 100%;
-    text-align: center;
-    padding: 16px 0;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
     color: gray;
     font-size: 14px;
     background: #EEE;
+}
+
+.footer__link {
+    padding: 0 0.5em;
 }
 
 .footer__link,
@@ -19,4 +25,11 @@
 .footer__link:hover {
     color: darkgray;
     text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+    .footer {
+        position: fixed;
+        bottom: 0;
+    }
 }

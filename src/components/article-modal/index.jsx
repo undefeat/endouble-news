@@ -7,7 +7,7 @@ import './index.css';
 
 function ArticleModal(props) {
     const { article, close } = props;
-    const { source, author, title, url, urlToImage, publishedAt, content } = article;
+    const { source, author, title, url, urlToImage, publishedAt, content, description } = article;
 
     return (
         <Modal close={close}>
@@ -20,7 +20,7 @@ function ArticleModal(props) {
 
                 <ArticleMeta source={source} url={url} publishedAt={publishedAt} />
 
-                <p className="article-modal__content">{content}</p>
+                <p className="article-modal__content">{content || description}</p>
 
                 <h6 className="article-modal__author">{author}</h6>
             </article>
