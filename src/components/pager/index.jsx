@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './index.css';
 
 function Pager(props) {
     const { totalResults, pageSize, page, onPageChanged } = props;
@@ -10,26 +11,30 @@ function Pager(props) {
     const handleNextClick = () => onPageChanged(page + 1);
 
     return (
-        <nav>
+        <nav className="pager">
             <ul>
                 <li>
                     <button
+                        className="pager__btn"
                         type="button"
                         aria-label="Previous page"
+                        title="Next page"
                         disabled={!hasPrev}
                         onClick={() => (hasPrev ? handlePrevClick() : null)}
                     >
-                        Prev
+                        <i className="fas fa-arrow-left" />
                     </button>
                 </li>
                 <li>
                     <button
+                        className="pager__btn"
                         type="button"
                         aria-label="Next page"
+                        title="Next page"
                         disabled={!hasNext}
                         onClick={() => (hasNext ? handleNextClick() : null)}
                     >
-                        Next
+                        <i className="fas fa-arrow-right" />
                     </button>
                 </li>
             </ul>

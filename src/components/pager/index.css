@@ -1,0 +1,33 @@
+.pager {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pager ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.pager__btn {
+    border: none;
+    background: none;
+    padding: 4px 8px;
+    margin: 0;
+    outline: 0;
+    font-size: 28px;
+    cursor: pointer;
+    color: gray;
+}
+
+.pager__btn:hover {
+    color: darkgray;
+}
+
+.pager__btn:disabled {
+    color: #D5D5D5;
+    cursor: default;
+}
