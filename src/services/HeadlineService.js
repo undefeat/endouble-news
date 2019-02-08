@@ -1,3 +1,5 @@
+const topHeadlines = require('./__tests__/responses/top-headlines.json');
+
 class HeadlineService {
     apiUrl = 'https://newsapi.org/v2/top-headlines';
 
@@ -7,14 +9,15 @@ class HeadlineService {
 
     async getHeadlines(filter) {
         try {
-            const headers = new Headers({
-                'X-Api-Key': this.apiKey,
-            });
-            const query = this.getQueryString(filter);
-            const response = await fetch(this.apiUrl + query, {
-                headers,
-            });
-            const body = await response.json();
+            // const headers = new Headers({
+            //     'X-Api-Key': this.apiKey,
+            // });
+            // const query = this.getQueryString(filter);
+            // const response = await fetch(this.apiUrl + query, {
+            //     headers,
+            // });
+            // const body = await response.json();
+            const body = topHeadlines;
             if (body.status === 'ok') {
                 const articles = body.articles.map(article => ({
                     source: article.source.name,
