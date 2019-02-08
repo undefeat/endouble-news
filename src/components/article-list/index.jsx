@@ -15,8 +15,7 @@ function ArticleList(props) {
 
     return (
         <main>
-            <ul>{cards}</ul>
-
+            {cards.length > 0 ? <ul>{cards}</ul> : <h2>Sorry, no articles found that match your query.</h2>}
             <Pager totalResults={totalResults} pageSize={pageSize} page={page} onPageChanged={onPageChanged} />
         </main>
     );
