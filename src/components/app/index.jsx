@@ -5,6 +5,8 @@ import FilterPanel from '../filter-panel';
 import SortPanel from '../sort-panel';
 import ArticleList from '../article-list';
 import Footer from '../footer';
+import Loader from '../loader';
+import './index.css';
 
 class App extends React.Component {
     state = {
@@ -27,6 +29,11 @@ class App extends React.Component {
 
     async componentDidMount() {
         try {
+            const cloak = document.getElementById('cloak');
+            if (cloak) {
+                cloak.style.display = 'none';
+            }
+
             const { filter } = this.state;
             this.setState({ loading: true });
             const countries = await CountryService.getCountries();
@@ -76,7 +83,7 @@ class App extends React.Component {
         } = this.state;
 
         if (loading) {
-            return 'Loading...';
+            return <Loader />;
         }
 
         let articlesSorted;
@@ -95,7 +102,7 @@ class App extends React.Component {
         }
 
         return (
-            <>
+            <div className="app">
                 <header>
                     <FilterPanel
                         q={filter.q}
@@ -120,7 +127,7 @@ class App extends React.Component {
                 />
 
                 <Footer />
-            </>
+            </div>
         );
     }
 }

@@ -7,3 +7,8 @@
     margin: 0 auto;
     max-width: 1400px;
 }
+
+.no-articles-found {
+    text-align: center;
+    font-size: 22px;
+}
