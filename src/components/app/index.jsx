@@ -21,6 +21,7 @@ class App extends React.Component {
             q: '',
             pageSize: 12,
             page: 1,
+            ...LocationService.getFilterFromQuery(),
         },
         sortOptions: ['date', 'source'],
         sortBy: 'date',
@@ -36,10 +37,9 @@ class App extends React.Component {
                 cloak.style.display = 'none';
             }
 
-            const { filter } = this.state;
-            LocationService.updateQueryParams(filter);
             window.addEventListener('popstate', this.handlePopstate);
 
+            const { filter } = this.state;
             this.setState({ loading: true });
             const countries = await CountryService.getCountries();
             this.setState({ countries });
@@ -63,21 +63,21 @@ class App extends React.Component {
         window.removeEventListener('popstate', this.handlePopstate);
     }
 
-    handlePopstate = event => {
+    handlePopstate = (event) => {
         if (event.state) {
             this.updateFilter(event.state, false);
         }
     };
 
     updateFilter = (filterPartial, updateQueryParams = true) => {
-        this.setState(prevState => {
+        this.setState((prevState) => {
             const newFilter = {
                 ...prevState.filter,
                 ...filterPartial,
             };
 
             if (updateQueryParams) {
-                LocationService.updateQueryParams(newFilter);
+                LocationService.saveFilterToHistory(newFilter);
             }
 
             return {
@@ -154,7 +154,7 @@ class App extends React.Component {
 
                     <Footer />
                 </div>
-                
+
                 <BackToTop />
             </>
         );
