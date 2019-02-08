@@ -4,25 +4,30 @@ import { articleShape } from '../shapes';
 import Modal from '../modal';
 
 function ArticleModal(props) {
-    const { article, onModalClosed } = props;
+    const { article, close } = props;
     const { source, author, title, url, urlToImage, publishedAt, content } = article;
 
     return (
-        <Modal onOutsideClick={onModalClosed}>
+        <Modal close={close}>
             <article>
                 <figure>
-                    <img src={urlToImage} alt="thumbnail" style={{ maxWidth: '100%' }} />
+                    <img src={urlToImage} alt="" style={{ maxWidth: '100%' }} />
                 </figure>
+
                 <h2>{title}</h2>
-                <p>{publishedAt}</p>
-                <p>{author}</p>
-                <p>{content}</p>
-                <p>
+
+                <h6>
                     <span>Source: </span>
-                    <a href={url} rel="noopener noreferrer" target="_blank">
+                    <a href={url} rel="noopener noreferrer" aria-label="Source URL" target="_blank">
                         {source}
                     </a>
-                </p>
+                </h6>
+
+                <time dateTime={publishedAt}>{publishedAt}</time>
+
+                <h6>{author}</h6>
+
+                <p>{content}</p>
             </article>
         </Modal>
     );
@@ -30,7 +35,7 @@ function ArticleModal(props) {
 
 ArticleModal.propTypes = {
     article: articleShape.isRequired,
-    onModalClosed: PropTypes.func.isRequired,
+    close: PropTypes.func.isRequired,
 };
 
 export default ArticleModal;

@@ -13,12 +13,22 @@ function Pager(props) {
         <nav>
             <ul>
                 <li>
-                    <button type="button" disabled={!hasPrev} onClick={() => (hasPrev ? handlePrevClick() : null)}>
+                    <button
+                        type="button"
+                        aria-label="Previous page"
+                        disabled={!hasPrev}
+                        onClick={() => (hasPrev ? handlePrevClick() : null)}
+                    >
                         Prev
                     </button>
                 </li>
                 <li>
-                    <button type="button" disabled={!hasNext} onClick={() => (hasNext ? handleNextClick() : null)}>
+                    <button
+                        type="button"
+                        aria-label="Next page"
+                        disabled={!hasNext}
+                        onClick={() => (hasNext ? handleNextClick() : null)}
+                    >
                         Next
                     </button>
                 </li>

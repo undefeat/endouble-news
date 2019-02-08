@@ -77,6 +77,7 @@ class App extends React.Component {
                     page={filter.page}
                     onPageChanged={page => this.updateFilter({ page })}
                 />
+
                 <Footer />
             </>
         );

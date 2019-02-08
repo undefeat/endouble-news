@@ -7,12 +7,17 @@ class ArticleCard extends React.Component {
         modalIsOpen: false,
     };
 
+    openModalBtnRef = React.createRef();
+
     handleClick = () => {
         this.setState({ modalIsOpen: true });
     };
 
-    handleModalClosed = () => {
+    handleCloseModal = () => {
         this.setState({ modalIsOpen: false });
+        if (this.openModalBtnRef.current) {
+            this.openModalBtnRef.current.focus();
+        }
     };
 
     render() {
@@ -23,24 +28,31 @@ class ArticleCard extends React.Component {
         return (
             <li>
                 <article>
-                    <button type="button" onClick={this.handleClick}>
+                    <button
+                        ref={this.openModalBtnRef}
+                        type="button"
+                        aria-label="Open in modal"
+                        onClick={this.handleClick}
+                    >
                         <figure>
                             <img src={urlToImage} alt="thumbnail" style={{ maxWidth: 100 }} />
                         </figure>
                         <h2>{title}</h2>
-                        <p>{description}</p>
                     </button>
 
-                    <p>
+                    <p>{description}</p>
+
+                    <h6>
                         <span>Source: </span>
-                        <a href={url} rel="noopener noreferrer" target="_blank">
+                        <a href={url} rel="noopener noreferrer" aria-label="Source URL" target="_blank">
                             {source}
                         </a>
-                    </p>
-                    <p>{publishedAt}</p>
+                    </h6>
+
+                    <time dateTime={publishedAt}>{publishedAt}</time>
                 </article>
 
-                {modalIsOpen && <ArticleModal article={article} onModalClosed={this.handleModalClosed} />}
+                {modalIsOpen && <ArticleModal article={article} close={this.handleCloseModal} />}
             </li>
         );
     }

@@ -5,9 +5,14 @@ import PropTypes from 'prop-types';
 class Modal extends React.Component {
     el = document.createElement('div');
 
+    closeBtnRef = React.createRef();
+
     componentDidMount() {
         document.body.appendChild(this.el);
         document.body.addEventListener('click', this.handleOutsideClick);
+        if (this.closeBtnRef.current) {
+            this.closeBtnRef.current.focus();
+        }
     }
 
     componentWillUnmount() {
@@ -17,13 +22,13 @@ class Modal extends React.Component {
 
     handleOutsideClick = event => {
         if (event.target !== this.el && !this.el.contains(event.target)) {
-            const { onOutsideClick } = this.props;
-            onOutsideClick();
+            const { close } = this.props;
+            close();
         }
     };
 
     render() {
-        const { children } = this.props;
+        const { children, close } = this.props;
 
         return ReactDOM.createPortal(
             <aside
@@ -37,6 +42,9 @@ class Modal extends React.Component {
                     overflow: 'auto',
                 }}
             >
+                <button ref={this.closeBtnRef} type="button" aria-label="Close" onClick={close}>
+                    X
+                </button>
                 {children}
             </aside>,
             this.el,
@@ -46,7 +54,7 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
     children: PropTypes.element.isRequired,
-    onOutsideClick: PropTypes.func.isRequired,
+    close: PropTypes.func.isRequired,
 };
 
 export default Modal;
