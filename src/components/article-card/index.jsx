@@ -2,6 +2,7 @@ import React from 'react';
 import articleShape from '../shapes/articleShape';
 import ArticleModal from '../article-modal';
 import formatDate from '../../helpers/formatDate';
+import './index.css';
 
 class ArticleCard extends React.Component {
     state = {
@@ -27,30 +28,39 @@ class ArticleCard extends React.Component {
         const { source, title, description, url, urlToImage, publishedAt } = article;
 
         return (
-            <li>
+            <li className="article-card">
                 <article>
                     <button
                         ref={this.openModalBtnRef}
+                        className="article-card__modal-btn"
                         type="button"
                         aria-label="Open in modal"
                         onClick={this.handleClick}
                     >
-                        <figure>
-                            <img src={urlToImage} alt="thumbnail" style={{ maxWidth: 100 }} />
+                        <figure className="article-card__thumbnail">
+                            <img className="article-card__thumbnail__img" src={urlToImage} alt="thumbnail" />
                         </figure>
-                        <h2>{title}</h2>
+
+                        <h2 className="article-card__title">{title}</h2>
                     </button>
 
-                    <p>{description}</p>
-
-                    <h6>
-                        <span>Source: </span>
-                        <a href={url} rel="noopener noreferrer" aria-label="Source URL" target="_blank">
+                    <div className="article-card__meta">
+                        <a
+                            className="article-card__meta__source-link"
+                            href={url}
+                            rel="noopener noreferrer"
+                            aria-label="Source URL"
+                            target="_blank"
+                        >
                             {source}
                         </a>
-                    </h6>
+                        <span className="article-card__meta__delimiter">|</span>
+                        <time className="article-card__meta__date" dateTime={publishedAt} title={new Date(publishedAt).toLocaleString()}>
+                            {formatDate(publishedAt)}
+                        </time>
+                    </div>
 
-                    <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
+                    <p className="article-card__description">{description}</p>
                 </article>
 
                 {modalIsOpen && <ArticleModal article={article} close={this.handleCloseModal} />}

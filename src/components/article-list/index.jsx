@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import articleShape from '../shapes/articleShape';
 import ArticleCard from '../article-card';
 import Pager from '../pager';
+import './index.css';
 
 function ArticleList(props) {
     const { fetching, articles, totalResults, pageSize, page, onPageChanged } = props;
@@ -15,7 +16,11 @@ function ArticleList(props) {
 
     return (
         <main>
-            {cards.length > 0 ? <ul>{cards}</ul> : <h2>Sorry, no articles found that match your query.</h2>}
+            {cards.length > 0 ? (
+                <ul className="article_list">{cards}</ul>
+            ) : (
+                <h2>Sorry, no articles found that match your query.</h2>
+            )}
             <Pager totalResults={totalResults} pageSize={pageSize} page={page} onPageChanged={onPageChanged} />
         </main>
     );

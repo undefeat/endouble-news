@@ -1,0 +1,79 @@
+.article-card {
+    flex: 1 1 300px;
+    overflow: hidden;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin: 8px;
+}
+
+.article-card__modal-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.article-card__modal-btn:hover * {
+    text-decoration: underline;
+    color: gray;
+}
+
+.article-card__title {
+    font-weight: bold;
+    font-size: 17px;
+    text-align: left;
+    padding: 12px;
+    margin: 0;
+}
+
+.article-card__thumbnail {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+}
+
+.article-card__thumbnail__img {
+    height: 100%;
+}
+
+.article-card__meta {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0 12px 8px 12px;
+    color: gray;
+}
+
+.article-card__meta__delimiter {
+    margin: 0 0.5em;
+}
+
+.article-card__meta__source-link,
+.article-card__meta__date {
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.article-card__meta__source-link,
+.article-card__meta__source-link:active,
+.article-card__meta__source-link:visited {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+
+.article-card__meta__source-link:hover {
+    color: darkgray;
+    text-decoration: underline;
+}
+
+.article-card__description {
+    font-size: 14px;
+    margin: 0;
+    padding: 12px;
+}
