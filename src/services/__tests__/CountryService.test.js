@@ -1,13 +1,13 @@
 import CountryService from '../CountryService';
 
-const countriesReponse = require('./countries-response.json');
+const countriesAll = require('./responses/countries-all.json');
 
-describe('CountryService', () => {
+describe('getCountries', () => {
     beforeEach(() => fetch.resetMocks());
 
     it('should correctly map the response body', async () => {
-        expect.assertions(countriesReponse.length * 4);
-        fetch.mockResponseOnce(JSON.stringify(countriesReponse));
+        expect.assertions(countriesAll.length * 4);
+        fetch.mockResponseOnce(JSON.stringify(countriesAll));
 
         const countries = await CountryService.getCountries();
 

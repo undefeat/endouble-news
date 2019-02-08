@@ -1,11 +1,11 @@
 class CountryService {
-    API = 'https://restcountries.eu/rest/v2/all';
+    apiUrl = 'https://restcountries.eu/rest/v2/all';
 
     errorMessage = "Couldn't fetch countries.";
 
     async getCountries() {
         try {
-            const response = await fetch(this.API);
+            const response = await fetch(this.apiUrl);
             const body = await response.json();
             const countries = body.map(country => ({
                 name: country.name,
