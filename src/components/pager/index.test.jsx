@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import shallow from 'react-test-renderer/shallow';
-import Pager from './index';
+import Pager from '.';
 
 // eslint-disable-next-line
 class PagerWrapped extends React.Component {

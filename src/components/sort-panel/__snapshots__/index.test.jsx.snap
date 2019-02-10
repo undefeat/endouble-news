@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortPanel should correctly render 1`] = `
+<div
+  className="sort-panel"
+>
+  <button
+    className="sort-panel__btn"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      Sort by 
+    </span>
+    <span>
+      source
+    </span>
+  </button>
+</div>
+`;
