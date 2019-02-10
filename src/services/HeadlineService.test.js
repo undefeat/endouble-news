@@ -55,6 +55,10 @@ describe('getQueryString', () => {
         expect(HeadlineService.getQueryString()).toBe('');
     });
 
+    it('should return empty string when filter is empty object', () => {
+        expect(HeadlineService.getQueryString({})).toBe('');
+    });
+
     it('should include filter param when it is truthy', () => {
         expect(HeadlineService.getQueryString({
             country: 'us',
