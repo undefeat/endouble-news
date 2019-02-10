@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ArticleCard should render "No articles found" when 0 articles 1`] = `
+exports[`ArticleList should render "No articles found" when 0 articles 1`] = `
 <main
   className="article-list__wrapper"
 >
@@ -12,7 +12,7 @@ exports[`ArticleCard should render "No articles found" when 0 articles 1`] = `
 </main>
 `;
 
-exports[`ArticleCard should render Loader when fetching 1`] = `
+exports[`ArticleList should render Loader when fetching 1`] = `
 <main
   className="article-list__wrapper fetching"
 >
@@ -20,7 +20,7 @@ exports[`ArticleCard should render Loader when fetching 1`] = `
 </main>
 `;
 
-exports[`ArticleCard should render cards with a pager when some articles 1`] = `
+exports[`ArticleList should render cards with a pager when some articles 1`] = `
 <main
   className="article-list__wrapper"
 >

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleMeta should render Loader when fetching 1`] = `
+<div
+  className="article-meta"
+>
+  <a
+    aria-label="Source URL"
+    className="article-meta__source-link"
+    href="https://www.cnbc.com/2019/02/05/apple-homepod-smart-speaker-market-share.html"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    CNBC
+  </a>
+  <span
+    className="article-meta__delimiter"
+  >
+    |
+  </span>
+  <time
+    className="article-meta__date"
+    dateTime="2019-02-05T14:06:38Z"
+    title="2/5/2019, 4:06:38 PM"
+  >
+    4 days ago
+  </time>
+</div>
+`;
