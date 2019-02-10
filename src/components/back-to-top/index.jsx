@@ -10,17 +10,20 @@ class BackToTop extends React.PureComponent {
 
     state = { hidden: true };
 
+    /* istanbul ignore next: need a real browser environment */
     componentDidMount() {
         window.addEventListener('scroll', this.updateVisibility);
         window.addEventListener('resize', this.updateVisibility);
     }
 
+    /* istanbul ignore next: need a real browser environment */
     componentWillUnmount() {
         window.removeEventListener('scroll', this.updateVisibility);
         window.removeEventListener('resize', this.updateVisibility);
     }
 
     updateVisibility = () => {
+        /* istanbul ignore next: need a real browser environment */
         if (document.documentElement.scrollTop > 0) {
             this.setState({ hidden: false });
         } else {
@@ -29,6 +32,7 @@ class BackToTop extends React.PureComponent {
     };
 
     handleClick = () => {
+        /* istanbul ignore next: need a real browser environment */
         document.documentElement.scrollTop = 0;
     };
 

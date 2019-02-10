@@ -14,7 +14,7 @@ describe('Modal', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should call "close" when ', () => {
+    it('should call "close" when close btn is clicked', () => {
         const close = jest.fn();
         const element = ReactTestUtils.renderIntoDocument(
             <Modal close={close}>

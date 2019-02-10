@@ -35,7 +35,6 @@ class App extends React.Component {
             if (cloak) {
                 cloak.style.display = 'none';
             }
-
             window.addEventListener('popstate', this.handlePopstate);
 
             const { filter } = this.state;

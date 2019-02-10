@@ -19,7 +19,8 @@
         "build": "npm run lint && react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "eslint --fix --ext .js --ext .jsx src"
+        "lint": "eslint --fix --ext .js --ext .jsx src",
+        "coverage": "react-scripts test --coverage"
     },
     "browserslist": [
         ">0.2%",

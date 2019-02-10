@@ -13,6 +13,7 @@ class Modal extends React.Component {
     componentDidMount() {
         document.body.appendChild(this.el);
         document.body.addEventListener('click', this.handleOutsideClick);
+        /* istanbul ignore next: not critical */
         if (this.closeBtnRef.current) {
             this.closeBtnRef.current.focus();
         }
@@ -24,6 +25,7 @@ class Modal extends React.Component {
     }
 
     handleOutsideClick = (event) => {
+        /* istanbul ignore next: need a real browser environment */
         if (
             this.modalRef.current
             && event.target !== this.modalRef.current

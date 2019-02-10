@@ -15,6 +15,7 @@ class FilterPanel extends React.Component {
     }
 
     componentDidMount() {
+        /* istanbul ignore next: not critical */
         if (this.searchInputRef.current) {
             this.searchInputRef.current.focus();
         }
@@ -32,7 +33,9 @@ class FilterPanel extends React.Component {
     };
 
     callOnSearchPhraseChanged = (q) => {
+        /* istanbul ignore next: hard to test because of debounce */
         const { onSearchPhraseChanged } = this.props;
+        /* istanbul ignore next: hard to test because of debounce */
         onSearchPhraseChanged(q);
     };
 
