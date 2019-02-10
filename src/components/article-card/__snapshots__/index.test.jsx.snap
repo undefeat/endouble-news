@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleCard should correctly renderer an article card 1`] = `
+<li
+  className="article-card"
+>
+  <article>
+    <button
+      aria-label="Open in modal"
+      className="article-card__modal-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <figure
+        className="article-card__thumbnail"
+      >
+        <img
+          alt="thumbnail"
+          className="article-card__thumbnail__img"
+          src="https://cdn.arstechnica.net/wp-content/uploads/2019/02/passwordcheck-760x380.jpg"
+        />
+      </figure>
+      <h2
+        className="article-card__title"
+      >
+        Google releases Chrome extension that alerts to breached passwords - Ars Technica
+      </h2>
+    </button>
+    <ArticleMeta
+      publishedAt="2019-02-05T14:54:00Z"
+      source="Ars Technica"
+      url="https://arstechnica.com/information-technology/2019/02/google-releases-chrome-extension-that-alerts-to-breached-passwords/"
+    />
+    <p
+      className="article-card__description"
+    >
+      Using hashed and encrypted store, add-on securely checks logins against breach database.
+    </p>
+  </article>
+</li>
+`;
