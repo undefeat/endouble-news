@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal should correctly render 1`] = `
+Object {
+  "$$typeof": Symbol(react.portal),
+  "children": <div
+    className="modal__wrapper"
+  >
+    <aside
+      className="modal"
+    >
+      <button
+        aria-label="Close"
+        className="modal__close-btn"
+        onClick={[Function]}
+        title="Close"
+        type="button"
+      >
+        <i
+          className="fas fa-times"
+        />
+      </button>
+      <h2>
+        Hello, World!
+      </h2>
+    </aside>
+  </div>,
+  "containerInfo": <div />,
+  "implementation": null,
+  "key": null,
+}
+`;

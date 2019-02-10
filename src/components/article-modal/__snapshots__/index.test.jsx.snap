@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleModal should correctly render 1`] = `
+<Modal
+  close={[Function]}
+>
+  <article
+    className="article-modal"
+  >
+    <figure
+      className="article-modal__picture"
+    >
+      <img
+        alt=""
+        className="article-modal__picture__img"
+        src="https://cdn.arstechnica.net/wp-content/uploads/2019/02/passwordcheck-760x380.jpg"
+      />
+    </figure>
+    <h2
+      className="article-modal__title"
+    >
+      Google releases Chrome extension that alerts to breached passwords - Ars Technica
+    </h2>
+    <ArticleMeta
+      publishedAt="2019-02-05T14:54:00Z"
+      source="Ars Technica"
+      url="https://arstechnica.com/information-technology/2019/02/google-releases-chrome-extension-that-alerts-to-breached-passwords/"
+    />
+    <p
+      className="article-modal__content"
+    >
+      Enlarge / Good news. For now. 23 with 21 posters participating With lists of billions of compromised credentials floating around on underground forums and in text-paste pages across the Internet, it's difficult for anyone to keep up with the potential threat … [+2566 chars]
+    </p>
+    <h6
+      className="article-modal__author"
+    >
+      Sean Gallagher
+    </h6>
+  </article>
+</Modal>
+`;
