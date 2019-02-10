@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ArticleCard should correctly renderer an article card 1`] = `
+exports[`ArticleCard should correctly render 1`] = `
 <li
   className="article-card"
 >

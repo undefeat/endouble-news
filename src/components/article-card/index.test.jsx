@@ -17,7 +17,7 @@ const article = {
 };
 
 describe('ArticleCard', () => {
-    it('should correctly renderer an article card', () => {
+    it('should correctly render', () => {
         const tree = shallow.createRenderer().render(<ArticleCard article={article} />);
 
         expect(tree).toMatchSnapshot();
