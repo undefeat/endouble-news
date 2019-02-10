@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleCard should render "No articles found" when 0 articles 1`] = `
+<main
+  className="article-list__wrapper"
+>
+  <h2
+    className="no-articles-found"
+  >
+    Sorry, no articles found that match your query.
+  </h2>
+</main>
+`;
+
+exports[`ArticleCard should render Loader when fetching 1`] = `
+<main
+  className="article-list__wrapper fetching"
+>
+  <Loader />
+</main>
+`;
+
+exports[`ArticleCard should render cards with a pager when some articles 1`] = `
+<main
+  className="article-list__wrapper"
+>
+  <React.Fragment>
+    <ul
+      className="article_list"
+    >
+      <ArticleCard
+        article={
+          Object {
+            "author": "Sean Gallagher",
+            "content": "Enlarge / Good news. For now. 23 with 21 posters participating With lists of billions of compromised credentials floating around on underground forums and in text-paste pages across the Internet, it's difficult for anyone to keep up with the potential threat … [+2566 chars]",
+            "description": "Using hashed and encrypted store, add-on securely checks logins against breach database.",
+            "publishedAt": "2019-02-05T14:54:00Z",
+            "source": "Ars Technica",
+            "title": "Google releases Chrome extension that alerts to breached passwords - Ars Technica",
+            "url": "https://arstechnica.com/information-technology/2019/02/google-releases-chrome-extension-that-alerts-to-breached-passwords/",
+            "urlToImage": "https://cdn.arstechnica.net/wp-content/uploads/2019/02/passwordcheck-760x380.jpg",
+          }
+        }
+      />
+      <ArticleCard
+        article={
+          Object {
+            "author": "Lauren Feiner",
+            "content": "Apple's smart speaker is struggling to grab market share from the Amazon Echo and Google Home. A new analysis by Consumer Intelligence Research Partners (CIRP) found Apple's HomePod makes up only 6 percent of the 66 million units that make up the U.S. install… [+2160 chars]",
+            "description": "Apple's HomePod, which is more expensive and limited than its competitors, only makes up 6 percent of the U.S. installed base of smart speaker devices, a new analysis found.",
+            "publishedAt": "2019-02-05T14:06:38Z",
+            "source": "CNBC",
+            "title": "Apple's smart speaker is struggling against rivals from Amazon and Google - CNBC",
+            "url": "https://www.cnbc.com/2019/02/05/apple-homepod-smart-speaker-market-share.html",
+            "urlToImage": "https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2017/06/05/104511324-GettyImages-692676170.1910x1000.jpg",
+          }
+        }
+      />
+    </ul>
+    <Pager
+      onPageChanged={[Function]}
+      page={1}
+      pageSize={12}
+      totalResults={37}
+    />
+  </React.Fragment>
+</main>
+`;
