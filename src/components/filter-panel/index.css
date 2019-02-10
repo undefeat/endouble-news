@@ -7,7 +7,7 @@
 .filter-panel__input,
 .filter-panel__select {
     padding: 8px 8px 8px 24px;
-    line-height: 1.1875em;
+    height: 35px;
     font-size: 16px;
     background: rgba(0, 0, 0, 0.05);
     border: none;
