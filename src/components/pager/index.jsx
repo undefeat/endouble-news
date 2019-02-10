@@ -15,7 +15,7 @@ function Pager(props) {
             <ul>
                 <li>
                     <button
-                        className="pager__btn"
+                        className="pager__btn pager__btn--prev"
                         type="button"
                         aria-label="Previous page"
                         title="Next page"
@@ -27,7 +27,7 @@ function Pager(props) {
                 </li>
                 <li>
                     <button
-                        className="pager__btn"
+                        className="pager__btn pager__btn--next"
                         type="button"
                         aria-label="Next page"
                         title="Next page"

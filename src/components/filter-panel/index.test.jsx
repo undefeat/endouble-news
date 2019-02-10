@@ -51,10 +51,13 @@ describe('FilterPanel', () => {
         );
 
         const searchInput = ReactTestUtils.findRenderedDOMComponentWithClass(element, 'filter-panel__input');
-        const countrySelect = ReactTestUtils.findRenderedDOMComponentWithClass(element, 'filter-panel__country-select');
+        const countrySelect = ReactTestUtils.findRenderedDOMComponentWithClass(
+            element,
+            'filter-panel__select--country',
+        );
         const categorySelect = ReactTestUtils.findRenderedDOMComponentWithClass(
             element,
-            'filter-panel__category-select',
+            'filter-panel__select--category',
         );
 
         ReactTestUtils.Simulate.change(searchInput);

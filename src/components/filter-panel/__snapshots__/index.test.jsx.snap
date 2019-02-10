@@ -20,7 +20,7 @@ exports[`FilterPanel should correctly render 1`] = `
       Country:
     </span>
     <select
-      className="filter-panel__select filter-panel__country-select"
+      className="filter-panel__select filter-panel__select--country"
       id="country-select"
       onChange={[Function]}
       value="nl"
@@ -50,7 +50,7 @@ exports[`FilterPanel should correctly render 1`] = `
       Category:
     </span>
     <select
-      className="filter-panel__select filter-panel__category-select"
+      className="filter-panel__select filter-panel__select--category"
       id="category-select"
       onChange={[Function]}
       value="sports"

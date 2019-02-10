@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pager should correctly render 1`] = `
+<nav
+  className="pager"
+>
+  <ul>
+    <li>
+      <button
+        aria-label="Previous page"
+        className="pager__btn pager__btn--prev"
+        disabled={false}
+        onClick={[Function]}
+        title="Next page"
+        type="button"
+      >
+        <i
+          className="fas fa-arrow-left"
+        />
+      </button>
+    </li>
+    <li>
+      <button
+        aria-label="Next page"
+        className="pager__btn pager__btn--next"
+        disabled={false}
+        onClick={[Function]}
+        title="Next page"
+        type="button"
+      >
+        <i
+          className="fas fa-arrow-right"
+        />
+      </button>
+    </li>
+  </ul>
+</nav>
+`;
