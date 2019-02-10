@@ -92,6 +92,7 @@ class HeadlineService {
     /**
      * Reads window location and parses the URL query to a filter object.
      *
+     * @returns a filter object.
      * @memberof HeadlineService
      */
     getFilterFromQuery = () => {

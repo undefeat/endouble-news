@@ -85,3 +85,49 @@ describe('getQueryString', () => {
         })).toBe('?country=us&category=entertainment&q=test&pageSize=12&page=1');
     });
 });
+
+describe('saveFilterToHistory', () => {
+    it('should stringify the given filter object into a URL query and push it to the history', () => {
+        const filter = {
+            myKey: 'myValue',
+        };
+
+        window.history.pushState = jest.fn();
+        HeadlineService.saveFilterToHistory(filter);
+
+        expect(window.history.pushState).toHaveBeenCalledTimes(1);
+        expect(window.history.pushState).toHaveBeenCalledWith(filter, null, '?myKey=myValue');
+    });
+});
+
+describe('getFilterFromQuery', () => {
+    beforeEach(() => {
+        delete window.location;
+        Object.defineProperty(window, 'location', {
+            configurable: true,
+            writable: true,
+            enumerable: true,
+            value: {
+                search: '',
+            },
+        });
+    });
+
+    it('should return an empty object when having empty URL query', () => {
+        expect(HeadlineService.getFilterFromQuery()).toEqual({});
+    });
+
+    it('should read window location and parse the URL query to a filter object', () => {
+        window.location = {
+            search: '?country=us&category=general&q=test&pageSize=12&page=2',
+        };
+
+        expect(HeadlineService.getFilterFromQuery()).toEqual({
+            country: 'us',
+            category: 'general',
+            q: 'test',
+            pageSize: 12,
+            page: 2,
+        });
+    });
+});
