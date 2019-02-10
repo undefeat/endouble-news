@@ -71,7 +71,7 @@ class FilterPanel extends React.Component {
                 <label htmlFor="country-select" className="filter-panel__label">
                     <span>Country:</span>
                     <select
-                        className="filter-panel__select"
+                        className="filter-panel__select filter-panel__country-select"
                         id="country-select"
                         value={selectedCountry}
                         onChange={this.handleCountryChange}
@@ -83,7 +83,7 @@ class FilterPanel extends React.Component {
                 <label htmlFor="category-select" className="filter-panel__label">
                     <span>Category:</span>
                     <select
-                        className="filter-panel__select"
+                        className="filter-panel__select filter-panel__category-select"
                         id="category-select"
                         value={selectedCategory}
                         onChange={this.handleCategoryChange}
