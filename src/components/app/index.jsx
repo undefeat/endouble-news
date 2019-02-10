@@ -1,7 +1,6 @@
 import React from 'react';
 import CountryService from '../../services/CountryService';
 import HeadlineService from '../../services/HeadlineService';
-import LocationService from '../../services/LocationService';
 import FilterPanel from '../filter-panel';
 import SortPanel from '../sort-panel';
 import ArticleList from '../article-list';
@@ -21,7 +20,7 @@ class App extends React.Component {
             q: '',
             pageSize: 12,
             page: 1,
-            ...LocationService.getFilterFromQuery(),
+            ...HeadlineService.getFilterFromQuery(),
         },
         sortOptions: ['date', 'source'],
         sortBy: 'date',
@@ -77,7 +76,7 @@ class App extends React.Component {
             };
 
             if (updateQueryParams) {
-                LocationService.saveFilterToHistory(newFilter);
+                HeadlineService.saveFilterToHistory(newFilter);
             }
 
             return {

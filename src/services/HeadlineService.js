@@ -1,5 +1,10 @@
 import ErrorWrapped from '../classes/ErrorWrapped';
 
+/**
+ * Singleton for working with newsapi.org API.
+ *
+ * @class HeadlineService
+ */
 class HeadlineService {
     apiUrl = 'https://newsapi.org/v2/top-headlines';
 
@@ -7,6 +12,14 @@ class HeadlineService {
 
     errorMessage = "Couldn't fetch headlines.";
 
+    /**
+     * Fetches latest news headlines.
+     *
+     * @param {object} filter an object containing key-value pairs that correspond to the request query.
+     * @returns a Promise that resolves to an object containing number of total results and an array of articles.
+     * @throws when the request or mapping of the response fails.
+     * @memberof HeadlineService
+     */
     async getHeadlines(filter) {
         try {
             const headers = new Headers({
@@ -41,6 +54,11 @@ class HeadlineService {
         }
     }
 
+    /**
+     * Stringifies the given object into a URL query.
+     *
+     * @memberof HeadlineService
+     */
     getQueryString = (filter) => {
         if (!filter) {
             return '';
@@ -60,6 +78,41 @@ class HeadlineService {
 
         return '';
     }
+
+    /**
+     * Stringifies the given filter object into a URL query and pushes it to the history.
+     *
+     * @memberof HeadlineService
+     */
+    saveFilterToHistory = (filter) => {
+        const query = this.getQueryString(filter);
+        window.history.pushState(filter, null, query);
+    };
+
+    /**
+     * Reads window location and parses the URL query to a filter object.
+     *
+     * @memberof HeadlineService
+     */
+    getFilterFromQuery = () => {
+        const query = window.location.search;
+        const paramStr = query.split('?')[1];
+        if (paramStr) {
+            const paramPairs = paramStr.split('&');
+            const paramObj = {};
+            for (let i = 0; i < paramPairs.length; i += 1) {
+                const [key, value] = paramPairs[i].split('=');
+                if (value && !Number.isNaN(Number(value))) {
+                    paramObj[key] = Number(value);
+                } else {
+                    paramObj[key] = value;
+                }
+            }
+            return paramObj;
+        }
+
+        return {};
+    };
 }
 
 export default new HeadlineService();
