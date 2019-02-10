@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader should correctly render 1`] = `
+<div
+  className="loader hidden"
+>
+  <div
+    className="lds-ring"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;
