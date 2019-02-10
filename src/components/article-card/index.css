@@ -17,7 +17,8 @@
     outline: 0;
 }
 
-.article-card__modal-btn:hover * {
+.article-card__modal-btn:hover *,
+.article-card__modal-btn:focus * {
     text-decoration: underline;
     color: gray;
 }
